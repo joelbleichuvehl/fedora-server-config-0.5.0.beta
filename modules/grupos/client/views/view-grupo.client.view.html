@@ -1,0 +1,44 @@
+<section>
+  <div class="page-header">
+    <h1 >Grupo {{vm.grupo.nome}}</h1>
+  </div>
+  <div class="row">
+    <div class="col pull-right">
+      <a class="btn btn-primary" data-ui-sref="grupos.list()"><i class="fa fa-sign-out"></i></a>
+      <a ng-show="vm.authentication.user.isAdmin" class="btn btn-primary" data-ui-sref="grupos.edit({ grupoId: vm.grupo._id })"><i class="fa fa-edit"></i></a>
+      <button ng-show="vm.authentication.user.isAdmin" type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal-excluir"><i class="fa fa-trash"></i></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-md-3" >
+      <div class="jumbotron text-center">
+        <img alt="ambiente icone" class="img-responsive" src="modules/grupos/client/img/grupo.png"/>
+      </div>
+    </div>
+    <div class="col-sm-9 col-md-9">
+        <p><strong>Nome:</strong> {{vm.grupo.nome}}</p>
+        <p><strong>Descrição:</strong> {{vm.grupo.descricao}} </p>
+        <p><strong>Permissão grupo:</strong> </p>
+        <p><strong>Permissão diretorio:</strong> </p>
+        <p><strong>Permissão arquivos:</strong> </p>
+    </div>
+  </div>
+</section>
+
+<!-- Small modal -->
+<div class="modal fade modal-excluir" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>{{vm.grupo.nome}}</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Tem certeza de que deseja excluir o grupo <strong>{{vm.grupo.nome}}</strong>?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar/Voltar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="vm.remove()">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>

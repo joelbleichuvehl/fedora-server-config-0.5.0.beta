@@ -1,0 +1,38 @@
+{
+  "name": "fedora-server-conf-mongodb",
+  "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+  "homepage": "http://meanjs.org/",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-mocks": "~1.5.0",
+    "angular-ui-router": "~0.2.18",
+    "angular-file-upload": "~2.2.0",
+    "angular-messages": "~1.5.0",
+    "owasp-password-strength-test-pt-br": "owasp-password-strength-test-pt-BR#*",
+    "ngMask": "angular-mask#^3.0.16",
+    "font-awesome": "FortAwesome/Font-Awesome#^4.5.0",
+    "angular-bootstrap": "^1.3.2",
+    "bootstrap": "^3.3.6",
+    "angular-ui-mask": "^1.8.3",
+    "angular-chart.js": "^0.10.2",
+    "angular-nvd3": "^1.0.7",
+    "jquery.easy-pie-chart": "^2.1.6",
+    "angular-google-chart": "^0.1.0",
+    "angular-ui-utils": "bower"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap-theme.css",
+        "less/bootstrap.less"
+      ]
+    },
+    "jquery": {
+      "main": []
+    }
+  }
+}

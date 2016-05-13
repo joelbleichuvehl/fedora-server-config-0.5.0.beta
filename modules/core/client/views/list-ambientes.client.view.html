@@ -1,0 +1,32 @@
+<section ng-controller="AmbientesListController as vm">
+  <div class="page-header">
+    <h1 class="text-center">Ambientes</h1>
+  </div>
+  <!--Início painel-->
+  <div class="row" style="margin-right:-15.5px;">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="ambiente in vm.ambientes | orderBy: 'nome'">
+      <div class="panel panel-primary">
+        <div class="panel-body" style="padding:0px;">
+          <div class="row">
+            <div class="col-xs-5">
+              <img alt="ambiente icone" class="img-responsive margin-ambiente" src="modules/ambientes/client/img/ambiente.png"/>
+            </div>
+            <div class="col-xs-7 text-right">
+              <div class="btn btn-primary btn-lg btn-ambiente" data-toggle="tooltip" title="Dispositivos">{{ambiente.dispositivos.length}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer bg-primary">
+          <a class="icon-link pull-left text-capitalize" ui-sref="ambientes.edit({ ambienteId: ambiente._id })">{{ambiente.nome}}</a>
+          <span class="pull-right"><i class="fa fa-unlock-alt"></i></span>
+          <a class="icon-link pull-right" ui-sref="ambientes.edit({ ambienteId: ambiente._id })" data-toggle="tooltip" title="Editar"><i class="fa fa-eye"></i></a>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Fim painel-->
+  <div class="alert alert-warning text-center" data-ng-if="vm.ambientes.$resolved && !vm.ambientes.length">
+    Nenhum ambiente cadastrado. <a class="alert-link" data-ui-sref="ambientes.create" ng-show="vm.authentication.user.isAdmin">Incluir ambiente</a>
+  </div>
+</section>

@@ -1,0 +1,57 @@
+<section class="container">
+  <div class="page-header">
+    <h1>Usuários</h1>
+  </div>
+  <div>
+    <a ng-show="vm.authentication.user.isAdmin" class="btn btn-primary" data-ui-sref="usuarios.create"  data-ng-if="vm.usuarios.$resolved && vm.usuarios.length">
+      <i class="fa fa-plus"></i> Incluir usuário
+    </a>
+  </div>
+  <br>
+  <!--Início painel-->
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="usuario in vm.usuarios |  orderBy: 'nome'">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-5">
+              <img alt="usuario icone" class="img-responsive" src="modules/usuarios-samba/client/img/usuario.png"/>
+            </div>
+            <div class="col-xs-7 text-left" ng-repeat="grupo in usuario.grupos">
+              <h5>{{grupo.nome}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer bg-primary">
+          <a ng-show="vm.authentication.user.isAdmin" class="icon-link pull-left" ui-sref="usuarios.edit({ usuarioId: usuario._id })">{{usuario.nome}}</a>
+          <p ng-hide="vm.authentication.user.isAdmin" class="icon-link pull-left">{{usuario.nome}}</p>
+          <span ng-show="vm.authentication.user.isAdmin" class="pull-right icon-link-hand" data-toggle="tooltip" title="Excluir"><i class="fa fa-trash text-danger" data-toggle="modal" data-target=".modal{{usuario._id}}"></i></span>
+          <a ng-show="vm.authentication.user.isAdmin" class="icon-link pull-right" ui-sref="usuarios.edit({ usuarioId: usuario._id })" data-toggle="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
+          <div class="clearfix"></div>
+        </div>
+        <!-- Small modal -->
+        <div class="modal fade modal{{usuario._id}}" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4>{{usuario.nome}}</h4>
+              </div>
+              <div class="modal-body">
+                <h5>Tem certeza de que deseja excluir o usuário <strong>{{usuario.nome}}</strong>?</h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar/Voltar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.remove(usuario)"><i class="fa fa-trash"></i> Excluir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fim Small modal -->
+      </div>
+    </div>
+  </div>
+  <!--Fim painel-->
+  <div class="alert alert-warning text-center" data-ng-if="vm.usuarios.$resolved && !vm.usuarios.length">
+    Nenhum usuário cadastrado. <a class="alert-link" ng-show="vm.authentication.user.isAdmin" data-ui-sref="usuarios.create"> Incluir usuário</a>
+  </div>
+</section>

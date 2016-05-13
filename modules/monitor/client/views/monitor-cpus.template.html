@@ -1,0 +1,26 @@
+<div ng-controller="MonitorCpusController as monitorCpusController">
+	<div class="text-center">
+    <h1>Processadores ( CPUs )</h1>
+  </div>
+  <div class="row">
+		<!-- GRAFICO DE LINHA -->
+		<div class="col-md-12 panel panel-primary">
+			<nvd3 options="monitorCpusController.options"
+				data="monitorCpusController.data">
+			</nvd3>
+		</div>
+		<!-- GRAFICO DE BARRA HORIZONTAL-->
+		<div class="col-md-3 panel panel-primary">
+			<nvd3 options="monitorCpusController.options2"
+				data="monitorCpusController.data1">
+			</nvd3>
+		</div>
+		<!-- DADOS CPUS-->
+		<div class="col-md-9" ng-repeat="data in monitorCpusController.data1">
+			<div class="col-md-1  panel panel-default text-center pull-right" ng-repeat="value in data.values | orderBy:'-label'" style="margin-left:5px; padding:0; background-color:#ecf1f9;">
+				<h6><i class="fa fa-hdd-o"></i> {{value.label}}</h6>
+				<h3 class="text-primary"> {{value.value | number:1}}</h3>
+			</div>
+		</div>
+  </div>
+</div>

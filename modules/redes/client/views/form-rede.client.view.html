@@ -1,0 +1,141 @@
+<section>
+  <div class="container-fluid">
+    <div class="modal-header">
+      <h3 class="modal-title">{{vm.rede._id ? 'Editar rede' : 'Nova rede'}}</h3>
+    </div>
+    <div class="modal-body">
+      <form name="vm.form.redeForm" class="form-horizontal" ng-submit="vm.save(vm.form.redeForm.$valid)" novalidate>
+        <fieldset>
+          <div class="panel panel-default">
+            <div class="panel-heading">Intranet ETH0</div>
+            <div class="panel-body">
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.ipIntranet.$error.required && !vm.form.redeForm.ipIntranet.$pristine || vm.form.redeForm.ipIntranet.$error.pattern}">
+                <label class="control-label" for="ip">IP</label>
+                <input name="ipIntranet" type="text" ng-model="vm.rede.ipIntranet" id="ipIntranet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="192.198.10.1"required>
+                
+                <div ng-show="vm.form.redeForm.ipIntranet.$error.required && !vm.form.redeForm.ipIntranet.$pristine">
+                 <span class="text-danger">Endereço ip é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.ipIntranet.$error.pattern && !vm.form.redeForm.ipIntranet.$pristine">
+                 <span class="text-danger">Endereço ip inválido.</span>
+                </div>
+              </div>
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.mascaraIntranet.$error.required 
+              && !vm.form.redeForm.mascaraIntranet.$pristine || vm.form.redeForm.mascaraIntranet.$error.pattern}">
+                <label class="control-label" for="mascaraIntranet">Máscara</label>
+                <input name="mascaraIntranet" type="text" ng-model="vm.rede.mascaraIntranet" id="mascaraIntranet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="255.255.255.0"required>
+                
+                <div ng-show="vm.form.redeForm.mascaraIntranet.$error.required && !vm.form.redeForm.mascaraIntranet.$pristine">
+                 <span class="text-danger">Máscara é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.mascaraIntranet.$error.pattern && !vm.form.redeForm.mascaraIntranet.$pristine">
+                 <span class="text-danger">Máscara inválido.</span>
+                </div>
+              </div>
+
+               <div ng-class="{ 'has-error' : vm.form.redeForm.gatewayIntranet.$error.required 
+              && !vm.form.redeForm.gatewayIntranet.$pristine || vm.form.redeForm.gatewayIntranet.$error.pattern}">
+                <label class="control-label" for="gatewayIntranet">Gateway</label>
+                <input name="gatewayIntranet" type="text" ng-model="vm.rede.gatewayIntranet" id="gatewayIntranet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="255.255.255.0"required>
+                
+                <div ng-show="vm.form.redeForm.gatewayIntranet.$error.required && !vm.form.redeForm.gatewayIntranet.$pristine">
+                 <span class="text-danger">Gateway é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.gatewayIntranet.$error.pattern && !vm.form.redeForm.gatewayIntranet.$pristine">
+                 <span class="text-danger">Gateway inválido.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-default">
+            <div class="panel-heading">Internet</div>
+            <div class="panel-body">
+
+              <label class="radios">
+                ETH0 <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> 
+                PPP <input type="radio" name="radioOptions" id="inlineRadio2" value="option2">
+              </label>
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.ipInternet.$error.required && !vm.form.redeForm.ipInternet.$pristine || vm.form.redeForm.ipInternet.$error.pattern}">
+                <label class="control-label" for="ipInternet">IP</label>
+                <input name="ipInternet" type="text" ng-model="vm.rede.ipInternet" id="ipInternet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="192.198.10.1"required>
+                
+                <div ng-show="vm.form.redeForm.ipInternet.$error.required && !vm.form.redeForm.ipInternet.$pristine">
+                 <span class="text-danger">Endereço ipInternet é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.ipInternet.$error.pattern && !vm.form.redeForm.ipInternet.$pristine">
+                 <span class="text-danger">Endereço ipInternet inválido.</span>
+                </div>
+              </div>
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.mascaraInternet.$error.required 
+              && !vm.form.redeForm.mascaraInternet.$pristine || vm.form.redeForm.mascaraInternet.$error.pattern}">
+                <label class="control-label" for="mascaraInternet">Máscara</label>
+                <input name="mascaraInternet" type="text" ng-model="vm.rede.mascaraInternet" id="mascaraInternet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="255.255.255.0"required>
+                
+                <div ng-show="vm.form.redeForm.mascaraInternet.$error.required && !vm.form.redeForm.mascaraInternet.$pristine">
+                 <span class="text-danger">Máscara é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.mascaraInternet.$error.pattern && !vm.form.redeForm.mascaraInternet.$pristine">
+                 <span class="text-danger">Máscara inválido.</span>
+                </div>
+              </div>
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.gatewayInternet.$error.required 
+              && !vm.form.redeForm.gatewayInternet.$pristine || vm.form.redeForm.gatewayInternet.$error.pattern}">
+                <label class="control-label" for="gatewayInternet">Gateway</label>
+                <input name="gatewayInternet" type="text" ng-model="vm.rede.gatewayInternet" id="gatewayInternet" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="255.255.255.0"required>
+                
+                <div ng-show="vm.form.redeForm.gatewayInternet.$error.required && !vm.form.redeForm.gatewayInternet.$pristine">
+                 <span class="text-danger">Gateway é obrigatório.</span>
+                </div>
+
+                <div ng-show="vm.form.redeForm.gatewayInternet.$error.pattern && !vm.form.redeForm.gatewayInternet.$pristine">
+                 <span class="text-danger">Gateway inválido.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-default">
+           <div class="panel-heading">Hosts</div>
+            <div class="panel-body">
+              <div ng-class="{ 'has-error' : vm.form.redeForm.dominio.$error.required 
+              && !vm.form.redeForm.dominio.$pristine}">
+                <label class="control-label" for="dominio" >Domínio</label>
+                <input name="dominio" type="text" ng-model="vm.rede.dominio" id="dominio" class="form-control" placeholder="Domínio" required>
+                <div ng-show="vm.form.redeForm.dominio.$error.required && !vm.form.redeForm.dominio.$pristine" role="alert">
+                  <span class="text-danger">dominio do rede é obrigatório.</span>
+                </div>
+              </div>
+
+              <div ng-class="{ 'has-error' : vm.form.redeForm.nome.$error.required 
+              && !vm.form.redeForm.nome.$pristine}">
+                <label class="control-label" for="nome" >Nome do servidor</label>
+                <input name="nome" type="text" ng-model="vm.rede.nome" id="nome" class="form-control" placeholder="Nome do servidor" required>
+                <div ng-show="vm.form.redeForm.nome.$error.required && !vm.form.redeForm.nome.$pristine" role="alert">
+                  <span class="text-danger">nome do rede é obrigatório.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.redeForm.$invalid">{{vm.rede._id ? 'Atualizar' : 'Salvar'}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

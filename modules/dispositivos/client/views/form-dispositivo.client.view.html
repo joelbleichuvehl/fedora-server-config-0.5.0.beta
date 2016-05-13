@@ -1,0 +1,51 @@
+<section class="container">
+  <div class="page-header">
+    <h1 class="text-center" ng-show="vm.dispositivo._id"> Dispositivo {{vm.dispositivo.nome | uppercase}}</h1>
+    <h1 class="text-center" ng-hide="vm.dispositivo._id" >Novo dispositivo</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form name="vm.form.dispositivoForm" class="form-horizontal" ng-submit="vm.save(vm.form.dispositivoForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.dispositivoForm.nome.$error.required && !vm.form.dispositivoForm.nome.$pristine}">
+            <label class="control-label" for="nome">Nome</label>
+            <input ng-disabled="!vm.authentication.user.isAdmin" name="nome" type="text" ng-model="vm.dispositivo.nome" id="nome" class="form-control" placeholder="Nome" required>
+            <div ng-show="vm.form.dispositivoForm.nome.$error.required && !vm.form.dispositivoForm.nome.$pristine" role="alert">
+              <span class="text-danger">Nome do dispositivo é obrigatório.</span>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.dispositivoForm.ip.$error.required && !vm.form.dispositivoForm.ip.$pristine || vm.form.dispositivoForm.ip.$error.pattern}">
+            <label class="control-label" for="ip">IP</label>
+            <input ng-disabled="!vm.authentication.user.isAdmin" name="ip" type="text" ng-model="vm.dispositivo.ip" id="ip" class="form-control" ng-pattern="/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/" placeholder="192.198.10.1"required>
+            <div ng-show="vm.form.dispositivoForm.ip.$error.required && !vm.form.dispositivoForm.ip.$pristine">
+             <span class="text-danger">Endereço ip é obrigatório.</span>
+            </div>
+            <div ng-show="vm.form.dispositivoForm.ip.$error.pattern && !vm.form.dispositivoForm.ip.$pristine">
+             <span class="text-danger">Endereço ip inválido.</span>
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.dispositivoForm.mac.$error.required && !vm.form.dispositivoForm.mac.$pristine || vm.form.dispositivoForm.mac.$error.pattern}">
+            <label class="control-label" for="mac">Mac</label>
+            <input ng-disabled="!vm.authentication.user.isAdmin" name="mac" type="text" ng-model="vm.dispositivo.mac" id="mac" class="form-control" ng-pattern="/^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/" placeholder="Ex: a3:3d:45:a3:4f:87"required>
+            <div ng-show="vm.form.dispositivoForm.mac.$error.required && !vm.form.dispositivoForm.mac.$pristine">
+              <span class="text-danger">Mac address é obrigatório.</span>
+            </div>
+            <div ng-show="vm.form.dispositivoForm.mac.$error.pattern && !vm.form.dispositivoForm.mac.$pristine">
+              <span class="text-danger">Mac address inválido.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" ng-show="vm.authentication.user.isAdmin" class="btn btn-primary" ng-disabled="vm.form.dispositivoForm.$invalid"><i class="fa fa-check"></i> {{vm.dispositivo._id ? 'Atualizar' : 'Salvar'}}</button>
+            <button type="button" class="btn btn-primary" data-ui-sref="dispositivos.list"><i class="fa fa-times"></i> Cancelar/Voltar</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

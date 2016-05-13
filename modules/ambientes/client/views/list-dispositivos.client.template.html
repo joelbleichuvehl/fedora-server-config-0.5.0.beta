@@ -1,0 +1,69 @@
+<div class="list-group">
+  <h5 ng-show="vm.ambiente.dispositivos.length">Dispositivos do ambiente : <span class="label label-default">{{vm.ambiente.nome}}</span></h5>
+  <!--Início painel admin-->
+  <div ng-show="vm.authentication.user.isAdmin" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
+    <div class="panel panel-primary">
+      <div class="panel-body" >
+        <div class="row">
+          <div class="col-xs-5">
+            <img alt="ambiente icone" class="img-responsive" src="modules/dispositivos/client/img/dispositivo.png"/>
+          </div>
+          <div class="col-xs-7 text-left">
+            <h5> {{dispositivo.ip}}</h5>
+            <h5> {{dispositivo.mac}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer bg-primary">
+        <a class="icon-link icon-link-hand pull-left text-capitalize" ng-click="vm.modalEditDispositivo('md', dispositivo)">{{dispositivo.nome}}</a>
+        <span class="pull-right icon-link-hand" data-toggle="tooltip" title="Excluir"><i class="fa fa-trash text-danger" data-toggle="modal" data-target=".modal{{dispositivo._id}}"></i></span>
+        <a class="icon-link pull-right icon-link-hand" ng-click="vm.modalEditDispositivo('md', dispositivo)" data-toggle="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!-- Small modal -->
+    <div class="modal fade modal{{dispositivo._id}}" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>{{dispositivo.nome}}</h4>
+          </div>
+          <div class="modal-body">
+            <h5>Tem certeza de que deseja excluir o dispostivo <strong>{{dispositivo.nome}}</strong>?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar/Voltar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="vm.removeDispositivo(dispositivo)"><i class="fa fa-trash"></i> Excluir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fim Small modal -->
+  </div>
+  <!--Fim painel admin-->
+  <!--Início painel user-->
+  <div ng-show="!vm.authentication.user.isAdmin" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
+    <div class="panel panel-primary">
+      <div class="panel-body" >
+        <div class="row">
+          <div class="col-xs-5">
+            <img alt="ambiente icone" class="img-responsive" src="modules/dispositivos/client/img/dispositivo.png"/>
+          </div>
+          <div class="col-xs-7 text-left">
+            <h5> {{dispositivo.ip}}</h5>
+            <h5> {{dispositivo.mac}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer bg-primary">
+        <span class="pull-left text-capitalize">{{dispositivo.nome}}</span>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Fim painel user-->
+
+<div class="alert alert-warning text-center" data-ng-if="vm.ambiente.$resolved &&!vm.ambiente.dispositivos.length">
+  Nenhum dispositivo cadastrado neste ambiente. <a ng-show="vm.authentication.user.isAdmin" class="alert-link" ng-click="vm.modalCreateDispositivo('md', vm.ambiente)"> Incluir dispositivo.</a>
+</div>

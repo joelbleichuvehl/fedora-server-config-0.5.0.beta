@@ -1,0 +1,26 @@
+<section class="container">
+  <div class="page-header">
+    <h1 class="modal-title">{{vm.site._id ? 'Editar site proibido' : 'Novo site proibido'}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form name="vm.form.siteForm" class="form-horizontal" ng-submit="vm.save(vm.form.siteForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.siteForm.nome.$error.required && !vm.form.siteForm.nome.$pristine}">
+            <label class="control-label" for="nome" >Site proibido</label>
+            <input ng-disabled= "!vm.authentication.user.isAdmin" name="nome" type="text" ng-model="vm.site.nome" id="nome" class="form-control" placeholder="Site proibido" required>
+            <div ng-show="vm.form.siteForm.nome.$error.required && !vm.form.siteForm.nome.$pristine" role="alert">
+              <span class="text-danger">Site proibido é obrigatório.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button ng-show= "vm.authentication.user.isAdmin" type="submit" class="btn btn-primary" ng-disabled="vm.form.siteForm.$invalid"><i class="fa fa-check"></i> {{vm.site._id ? 'Atualizar' : 'Incluir'}}</button>
+            <button type="button" class="btn btn-default" data-ui-sref="sites.list"><i class="fa fa-times"></i> Cancelar/Voltar</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger"><strong ng-bind="vm.error"></strong></div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

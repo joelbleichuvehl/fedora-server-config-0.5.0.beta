@@ -1,0 +1,24 @@
+<div>
+  <div class="text-center">
+    <h1>Uso de Discos</h1>
+  </div>
+  <div class="list-group">
+    <div ng-repeat="dadosDisco in monitorDiscosController.dadosDiscos">
+      <div class="col-md-3 col-sm-6 col-xs-12" >
+        <div class="panel panel-default text-center" style="background-color: #29a3a3;">
+          <!--<span class="chart" easypiechart options="monitorDiscosController.pieOptions1" percent="dadosDisco.disco.uso">
+            <span class="percentual" ng-bind="dadosDisco.disco.uso"></span>
+          </span>-->
+          <nvd3 options="monitorDiscosController.options"
+    				data="dadosDisco.data">
+    			</nvd3>
+          <div class="pull-rigth  panel-footer text-left" style="background-color: #29a3a3; color: white;">
+            <p>Partição: {{dadosDisco.disco.particao}}</p>
+            <p>Tipo: {{dadosDisco.disco.tipo}}</p>
+            <p>Capacidade: {{dadosDisco.disco.tamanho}} Mb</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

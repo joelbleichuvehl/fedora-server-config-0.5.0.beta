@@ -1,0 +1,34 @@
+<section>
+  <div class="container-fluid">
+    <div class="modal-header">
+      <h3 class="modal-title">{{vm.log._id ? 'Editar log' : 'Novo log'}}</h3>
+    </div>
+    <div class="modal-body">
+      <form name="vm.form.logForm" class="form-horizontal" ng-submit="vm.save(vm.form.logForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.logForm.extensao.$error.required && !vm.form.logForm.extensao.$pristine}">
+            <label class="control-label" for="extensao" >Extensão</label>
+            <input name="extensao" type="text" ng-model="vm.log.extensao" id="extensao" class="form-control" placeholder="Extensão" required>
+            <div ng-show="vm.form.logForm.extensao.$error.required && !vm.form.logForm.extensao.$pristine" role="alert">
+              <span class="text-danger">Extensão do log é obrigatório.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="descricao">Descrição</label>
+            <textarea name="descricao" type="text" ng-model="vm.log.descricao" id="descricao" class="form-control" placeholder="Descrição"></textarea> 
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.logForm.$invalid">{{vm.log._id ? 'Atualizar' : 'Salvar'}}</button>
+            <button type="button" class="btn btn-primary text-center" data-ui-sref="logs.list">Cancelar/Voltar
+            </button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,260 @@
+<section>
+  <div class="container-fluid">
+    <div class="modal-header">
+      <h3 class="modal-title">{{vm.firewall._id ? 'Editar regra de firewall' : 'Nova regra de firewall'}}</h3>
+    </div>
+    <div class="modal-body">
+      <form name="vm.form.firewallForm" class="form-horizontal" ng-submit="vm.save(vm.form.firewallForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.firewallForm.regra.$error.required && !vm.form.firewallForm.regra.$pristine}">
+            <label class="control-label" for="regra" >Número da regra</label>
+            <input name="regra" type="text" ng-model="vm.firewall.regra" id="regra" class="form-control" placeholder="Número da regra" required>
+            <div ng-show="vm.form.firewallForm.regra.$error.required && !vm.form.firewallForm.regra.$pristine" role="alert">
+              <span class="text-danger">regra do firewall é obrigatório.</span>
+            </div>
+          </div>
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#filter" aria-controls="filter" role="tab" data-toggle="tab">Filter</a></li>
+            <li role="presentation"><a href="#nat" aria-controls="nat" role="tab" data-toggle="tab">Nat</a></li>
+          </ul>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="filter">
+              <div class="jumbotron">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Politica padrão:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="checkbox" style="margin-top:10px!important">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Ação:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Permite</option>
+                        <option>Rejeita</option>
+                        <option>Bloqueia</option>
+                        <option>Log</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Direção:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Entrada</option>
+                        <option>Saída</option>
+                        <option>Ambos</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Placa de entrada:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Eth0</option>
+                        <option>Eth1</option>
+                        <option>PPP0</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Placa de saída:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Eth0</option>
+                        <option>Eth1</option>
+                        <option>PPP0</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Serviço:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Origem:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Destino:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Estado dos pacotes:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <label style="font-weight:normal;">
+                        <input type="checkbox" style="margin:10px 10px 0px 0px!important">Novo
+                      </label>
+                      <label style="font-weight:normal;">
+                        <input type="checkbox" style="margin:10px!important">Estabelecido
+                      </label>
+                      <label style="font-weight:normal;">
+                        <input type="checkbox" style="margin:10px!important">Relacionado
+                      </label>
+                      <label style="font-weight:normal;">
+                        <input type="checkbox" style="margin:10px!important">Inválido
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Descrição:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <textarea type="text" class="form-control"></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="nat">
+              <div class="jumbotron">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Regra:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Traduzir origem</option>
+                        <option>Traduzir destino</option>
+                        <option>Redirecionar</option>
+                        <option>Mascarar</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Origem:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Destino:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Origem traduzida:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Destino traduzido:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Serviço:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Traduzir porta:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Placa de entrada:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Eth0</option>
+                        <option>Eth1</option>
+                        <option>PPP0</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Placa de saída:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <select class="form-control">
+                        <option>Eth0</option>
+                        <option>Eth1</option>
+                        <option>PPP0</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <h5 class="text-right">Descrição:</h5>
+                    </div>
+                    <div class="col-sm-10">
+                      <textarea type="text" class="form-control"></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.firewallForm.$invalid">{{vm.firewall._id ? 'Atualizar' : 'Salvar'}}</button>
+            <button type="button" class="btn btn-primary text-center" data-ui-sref="firewalls.list">Cancelar/Voltar
+            </button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

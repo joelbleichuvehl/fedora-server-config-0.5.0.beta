@@ -1,0 +1,47 @@
+.text-white{
+  color:#fff;
+}
+.bg-primary{
+  background-color:#3563A2;
+}
+
+
+/*==============*/
+/*  Link painel */
+/*==============*/
+.icon-link{
+  margin: 0 6px 0 6px;
+}
+/* unvisited link */
+.icon-link:link {
+  color:#fff;
+}
+/* visited link */
+.icon-link:visited {
+  color:#fff;
+}
+/* mouse over link */
+.icon-link:hover {
+  color:#C0C0C0;
+}
+/* selected link */
+.icon-link:active {
+  color:#C0C0C0;
+}
+/* Hand mouse */
+.icon-link-hand{
+  color: #fff;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/*==============*/
+/*   ambiente   */
+/*==============*/
+.margin-ambiente{
+  margin:10px;
+}
+
+.btn-ambiente{
+  border-radius:0 0 0 10px;
+}

@@ -1,0 +1,56 @@
+<section class="container">
+  <div class="page-header">
+    <h1>Sites proibidos</h1>
+  </div>
+  <div>
+    <a class="btn btn-primary" data-ui-sref="sites.create"  data-ng-if="vm.sites.$resolved && vm.sites.length" ng-show="vm.authentication.user.isAdmin">
+      <i class="fa fa-plus"></i> Incluir site proibido
+    </a>
+  </div>
+  <br>
+  <!-- Inicio tabela -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-xs-8"><h4>Site</h4></th>
+          <th ng-show="vm.authentication.user.isAdmin" class="col-xs-4 text-center"><h4>Ação</h4></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="site in vm.sites">
+          <!-- EXIBE PARA ADMIM -->
+          <td ng-show="vm.authentication.user.isAdmin"><a data-ui-sref="sites.edit({ siteId: site._id })"><h4 >{{site.nome}}</h4></a></td>
+          <!-- EXIBE PARA USER -->
+          <td ng-hide="vm.authentication.user.isAdmin"><p><h4>{{site.nome}}</h4></p></td>
+          <td class="text-center">
+            <a ng-show="vm.authentication.user.isAdmin" class="btn btn-primary" data-ui-sref="sites.edit({ siteId: site._id })" data-toggle="tooltip" title="Editar" ><i class="fa fa-edit"></i></a>
+            <button ng-show="vm.authentication.user.isAdmin" type="button" class="btn btn-danger" data-toggle="modal" data-target=".modal{{site._id}}"><i class="fa fa-trash" data-toggle="tooltip" title="Excluir"></i></button>
+            <!-- Small modal -->
+            <div class="modal fade modal{{site._id}}" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="text-left">{{site.nome}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <h5 class="text-left">Tem certeza de que deseja excluir o grupo <strong>{{site.nome}}</strong>?</h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar/Voltar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="vm.remove(site)" >Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- fim Small modal -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--fim tabela -->
+  <div class="alert alert-warning text-center" data-ng-if="vm.sites.$resolved && !vm.sites.length">
+    Nenhum site proibido cadastrados. <a class="alert-link" data-ui-sref="sites.create" ng-show="vm.authentication.user.isAdmin"> Incluir site proibido</a>
+  </div>
+</section>

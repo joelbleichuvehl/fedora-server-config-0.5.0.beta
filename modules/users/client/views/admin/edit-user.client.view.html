@@ -1,0 +1,199 @@
+<section>
+  <div class="page-header">
+    <h1>User <span ng-bind="vm.user.username"></span></h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.userForm" ng-submit="vm.update(vm.userForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="nome">DisplayName</label>
+          <input type="text" id="nome" name="nome" class="form-control" ng-model="vm.user.nome" placeholder="Nome" required />
+          <div ng-messages="vm.userForm.nome.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um Nome.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="displayName">DisplayName</label>
+          <input type="text" id="displayName" name="displayName" class="form-control" ng-model="vm.user.displayName" placeholder="DisplayName" required />
+          <div ng-messages="vm.userForm.displayName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um DisplayName.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Tipo Pessoa</label>
+          <div class="panel panel-default" style="margin-bottom: 0">
+            <div class="panel-body" >
+              <label class="radios" ng-repeat="tipoPessoa in vm.enumTipoPessoa">
+                {{tipoPessoa}}<input type="radio" name="tipoPessoa" id="inlineRadio1" ng-model="vm.user.tipoPessoa" value="{{tipoPessoa}}">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="cpfCnpj">Cpf</label>
+          <input type="text" id="cpfCnpj" name="cpf" class="form-control" placeholder="999.999.999-99" ng-model="vm.user.cpfCnpj" >
+          <div ng-messages="vm.userForm.cpfCnpj.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Cpf/Cnpj.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="cpfCnpj">Cnpj</label>
+          <input type="text" id="cpfCnpj" name="cpf" class="form-control" placeholder="99.999.999/9999-99" ng-model="vm.user.cpfCnpj" >
+          <div ng-messages="vm.userForm.cpfCnpj.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Cpf/Cnpj.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="numeroRg">Número Rg</label>
+          <input type="text" id="numeroRg" name="numeroRg" class="form-control" placeholder="Número Rg" ng-model="vm.user.numeroRg">
+          <div ng-messages="vm.userForm.numeroRg.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Número Rg.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input type="text" id="dataNascimento" name="dataNascimento" class="form-control" placeholder="DD/MM/AAAA"
+          ng-model="vm.user.dataNascimento" mask="39/19/9999" clean="false" restrict="reject" ng-pattern="">
+          <div ng-messages="vm.userForm.dataNascimento.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Data de Nascimento.</p> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="estadoCivil">Estado Cívil</label>
+          <select class="form-control" id="estadoCivil" name="estadoCivil" ng-model="vm.user.estadoCivil"
+          ng-options="estadoCivil for estadoCivil in vm.enumEstadoCivil">
+            <option value="">--- Por favor! Selecione uma opção. ---</option> <!-- not selected / blank option -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Sexo</label>
+          <div class="panel panel-default" style="margin-bottom: 0">
+            <div class="panel-body" >
+              <label class="radios" ng-repeat="sexo in vm.enumSexo">
+                {{sexo}} <input type="radio" name="sexo" id="inlineRadio" ng-model="vm.user.sexo" value="{{sexo}}">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Tipo endereço</label>
+          <div class="panel panel-default" style="margin-bottom: 0">
+            <div class="panel-body" >
+              <label class="radios" ng-repeat="tipoEndereco in vm.enumTipoEndereco">
+                {{tipoEndereco}} <input type="radio" name="tipoEndereco" id="inlineRadio1" ng-model="vm.user.tipoEndereco" value="{{tipoEndereco}}">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="logradouro">Logradouro</label>
+          <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" ng-model="vm.user.logradouro">
+          <div ng-messages="vm.userForm.logradouro.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Logradouro.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="numero">Número</label>
+          <input type="text" id="numero" name="numero" class="form-control" placeholder="Número" ng-model="vm.user.numero">
+          <div ng-messages="vm.userForm.numero.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Número.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="complemento">Complemento</label>
+          <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento" ng-model="vm.user.complemento">
+          <div ng-messages="vm.userForm.complemento.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Complemento.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" ng-model="vm.user.bairro">
+          <div ng-messages="vm.userForm.bairro.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Bairro.</p> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="estado">Estado</label>
+          <select class="form-control" id="estado" name="estado" ng-model="vm.user.estado"
+          ng-change="vm.filtraCidades()" ng-options="estado._id as (estado.nome | uppercase) for estado in vm.estados">
+            <option value="">--- Por favor! Selecione um estado. ---</option> <!-- not selected / blank option -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="cidade">Cidade</label>
+          <select class="form-control" id="cidade" name="cidade" ng-model="vm.user.cidade"
+          ng-options="cidade._id as cidade.nome for cidade in vm.cidades">
+            <option value="">--- Por favor! Selecione uma cidade. ---</option> <!-- not selected / blank option -->
+          </select>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="cep">Cep</label>
+          <input type="text" id="cep" name="cep" class="form-control" placeholder="Cep" ng-model="vm.user.cep">
+          <div ng-messages="vm.userForm.cep.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Cep.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="telefone">Telefone</label>
+          <input type="text" id="telefone" name="telefone" class="form-control" placeholder="(XX)9999-9999"
+          ng-model="vm.user.telefone" mask="(99) 9999-9999" clean="false" restrict="reject" ng-pattern="">
+          <div ng-messages="vm.userForm.telefone.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Telefone.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="celular">Celular</label>
+          <input type="text" id="celular" name="celular" class="form-control" placeholder="(XX)9999-9999"
+          ng-model="vm.user.celular" mask="(99) 9?9999-9999" clean="false" restrict="reject" ng-pattern="">
+          <div ng-messages="vm.userForm.celular.$error" role="alert">
+            <!-- <p class="help-block error-text" ng-message="required">É necessário informar um Celular.</p> -->
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="email">E-mail</label>
+          <input type="text" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="empresa@empresa.com" required />
+          <div ng-messages="vm.userForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um E-mail.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors >
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" required />
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um Username.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="provider">Provider</label>
+          <input type="text" id="provider" name="provider" class="form-control" ng-model="vm.user.provider" placeholder="Provider" required />
+          <div ng-messages="vm.userForm.provider.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um Provider.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="loja">Loja</label>
+          <input type="text" id="loja" name="loja" class="form-control" ng-model="vm.user.loja.nome" placeholder="Loja" required />
+          <div ng-messages="vm.userForm.loja.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um Loja.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="roles">Roles</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="roles" ng-model="vm.user.roles" id="roles" ng-list required />
+            <div ng-messages="vm.userForm.roles.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+<div>
+  <h3 class="col-md-12 text-center">Entre com suas informações</h3>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="vm.userForm" ng-submit="vm.signin(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="username">Usuário</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="vm.credentials.username" placeholder="Username" lowercase required>
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar um Nome de usuário</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" class="form-control" ng-model="vm.credentials.password" placeholder="Password" required>
+          <div ng-messages="vm.userForm.password.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">É necessário informar uma senha</p>
+          </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+          &nbsp; or&nbsp;
+          <a ui-sref="authentication.signup">Cadastrar-se</a>
+        </div>
+        <div class="text-center forgot-password">
+          <a ui-sref="password.forgot">Esqueceu sua senha?</a>
+        </div>
+        <uib-alert type="danger" ng-show="vm.error" class="text-center text-danger">
+          <span ng-bind="vm.error"></span>
+        </uib-alert>
+      </fieldset>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<section>
+  <div class="page-header">
+    <h1>Regras de firewalls</h1>
+    <div>
+      <a data-ui-sref="firewalls.create" data-ng-if="vm.firewalls.$resolved && vm.firewalls.length">
+        <i class="fa fa-laptop"> Criar regra de firewall</i>
+      </a>
+    </div>
+  </div>
+  <div class="list-group">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th class="col-md-1">Nº</th>
+          <th class="col-md-1">Tipo</th>
+          <th class="col-md-1">Ação</th>
+          <th class="col-md-1">Entrada</th>
+          <th class="col-md-1">Saída</th>
+          <th class="col-md-1">Origem</th>
+          <th class="col-md-1">Destino</th>
+          <th class="col-md-1">Origem trad.</th>
+          <th class="col-md-1">Destino trad.</th>
+          <th class="col-md-1">Serviço</th>
+          <th class="col-md-1">Para porta</th>
+          <th class="col-md-1">Direção</th>
+          <th>Outras Informações</th>
+        </tr>
+      </thead>
+      <tbody>  
+        <tr>
+          <td>1</td>
+          <td>Filter</td>
+          <td>Permite</td>
+          <td>ppp0</td>
+          <td>eth0</td>
+          <td>192.168.0.1</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>Dns udo</td>
+          <td>8080</td>
+          <td>Saída</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Nat</td>
+          <td>Permite</td>
+          <td>ppp0</td>
+          <td>eth0</td>
+          <td>192.168.0.1</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>Dns udo</td>
+          <td>8080</td>
+          <td>Saída</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.firewalls.$resolved && !vm.firewalls.length">
+    Sem regras de firewall cadastrada. <a data-ui-sref="firewalls.create"> Criar regra de firewall</a>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+<section class="container">
+  <div class="page-header">
+    <h1 class="text-center" ng-show="vm.grupo._id"> Grupo {{vm.grupo.nome | uppercase}}</h1>
+    <h1 class="text-center" ng-hide="vm.grupo._id" >Novo grupo</h1>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form name="vm.form.grupoForm" class="form-horizontal" ng-submit="vm.save(vm.form.grupoForm.$valid)" novalidate>
+        <fieldset>
+          <div class="form-group" ng-class="{ 'has-error' : vm.form.grupoForm.nome.$error.required && !vm.form.grupoForm.nome.$pristine}">
+            <label class="control-label" for="nome" >Nome</label>
+            <input ng-disabled="!vm.authentication.user.isAdmin" name="nome" type="text" ng-model="vm.grupo.nome" id="nome" class="form-control" placeholder="Nome" required>
+            <div ng-show="vm.form.grupoForm.nome.$error.required && !vm.form.grupoForm.nome.$pristine" role="alert">
+              <span class="text-danger">Nome do grupo é obrigatório.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="descricao">Descrição</label>
+            <textarea ng-disabled="!vm.authentication.user.isAdmin" name="descricao" type="text" ng-model="vm.grupo.descricao" id="descricao" class="form-control" placeholder="Descrição"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Permissão de grupo</label>
+            <div class="panel panel-default" style="margin-bottom: 0">
+              <div class="panel-body">
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox1" value="option1"> Leitura
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox2" value="option2"> Escrita
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox3" value="option3"> Execução
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Permissão de diretório</label>
+            <div class="panel panel-default" style="margin-bottom: 0">
+              <div class="panel-body" >
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox1" value="option1"> Leitura
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox2" value="option2"> Escrita
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox3" value="option3"> Execução
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Permissão de arquivos</label>
+            <div class="panel panel-default">
+              <div class="panel-body" style="margin-bottom: 0;">
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox1" value="option1" > Vídeo
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox2" value="option2"> Audio
+                </label>
+                <label style="font-weight:normal;">
+                  <input ng-disabled="!vm.authentication.user.isAdmin" type="checkbox" id="inlineCheckbox3" value="option3"> Executáveis
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button ng-show="vm.authentication.user.isAdmin" type="submit" class="btn btn-primary" ng-disabled="vm.form.grupoForm.$invalid"><i class="fa fa-check"></i> {{vm.grupo._id ? 'Atualizar' : 'Salvar'}}</button>
+            <button type="button" class="btn btn-primary text-center" data-ui-sref="grupos.list"><i class="fa fa-times"></i> Cancelar/Voltar
+            </button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

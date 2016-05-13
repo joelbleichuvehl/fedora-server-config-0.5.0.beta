@@ -1,0 +1,50 @@
+<section>
+  <div class="page-header">
+    <h1 class="text-center" ng-show="vm.usuario._id"> Usuário {{vm.usuario.nome}}</h1>
+    <h1 class="text-center" ng-hide="vm.usuario._id" >Novo usuário</h1>
+  </div>
+  <div class="row">
+    <form name="vm.form.usuarioForm" class="form-horizontal" ng-submit="vm.save(vm.form.usuarioForm.$valid)" novalidate>
+      <fieldset>
+        <div  class="form-group" ng-class="{ 'has-error' : vm.form.usuarioForm.nome.$error.required && !vm.form.usuarioForm.nome.$pristine}">
+          <label class="control-label" for="nome">Nome</label>
+          <input ng-disabled="!vm.authentication.user.isAdmin" type="text" ng-model="vm.usuario.nome" class="form-control" placeholder="Nome" required>
+          <div ng-show="vm.form.usuarioForm.nome.$error.required && !vm.form.usuarioForm.nome.$pristine" role="alert">
+            <span class="text-danger">Nome do usuário é obrigatório.</span>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error' : vm.form.usuarioForm.senha.$error.required && !vm.form.usuarioForm.senha.$pristine}">
+          <label class="control-label" for="senha">Senha</label>
+          <input ng-disabled="!vm.authentication.user.isAdmin" type="password" ng-model="vm.usuario.senha" class="form-control" placeholder="Senha" required>
+          <div ng-show="vm.form.usuarioForm.senha.$error.required && !vm.form.usuarioForm.senha.$pristine" role="alert">
+            <span class="text-danger">Senha do usuário é obrigatório.</span>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <label class="control-label">Grupos</label>
+          <div class="panel panel-default" style="margin-bottom: 0">
+            <div class="panel-body" >
+              <label style="font-weight:normal;" >
+                <div ng-repeat="grupo in vm.grupos">
+                  <input type="checkbox"  ng-click="vm.gruposList(grupo, vm.gruposSelecionados)">
+                  {{ grupo.nome }}
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div ng-show="vm.error" class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="vm.reset(vm.form.usuarioForm)"><span aria-hidden="true">&times;</span></button>
+          <strong>Warning!</strong> {{vm.error}}
+        </div>
+        <div class="form-group">
+          <button ng-show="vm.authentication.user.isAdmin" type="submit" class="btn btn-primary" ng-disabled="vm.form.usuarioForm.$invalid"><i class="fa fa-check"></i> {{vm.usuario._id ? 'Atualizar' : 'Salvar'}}</button>
+          <button type="button" class="btn btn-primary text-center" data-ui-sref="usuarios.list"><i class="fa fa-times"></i> Cancelar/Voltar
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
