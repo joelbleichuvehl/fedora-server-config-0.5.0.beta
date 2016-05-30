@@ -3,7 +3,7 @@
     <h1 class="text-center">Ambientes</h1>
   </div>
 <!--Inicio painel-->
-  <div class="col-md-4" data-ng-repeat="ambiente in vm.ambientes | orderBy: 'nome'">
+  <div class="col-md-3" data-ng-repeat="ambiente in vm.ambientes | orderBy: 'nome'">
     <div class="row">
       <div class="ih-item square colored effect6 from_top_and_bottom">
         <a href="#">
@@ -15,11 +15,11 @@
           </div>
           <div class="info">
             <h3>
-              <button class="btn btn-primary-redondo-md" type="button" name="button" ui-sref="ambientes.edit({ ambienteId: ambiente._id })">
+              <button class="btn btn-primary-redondo-md" type="button" name="button" title="Editar" ui-sref="ambientes.edit({ ambienteId: ambiente._id })">
                 <i class="fa fa-pencil-square-o hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
               ></i>
               </button>
-              <button class="btn btn-primary-redondo-md" type="button" name="button">
+              <button class="btn btn-primary-redondo-md" type="button" name="button" title="Bloquear">
                 <i class="fa fa-unlock-alt hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
                 data-toggle="modal" ng-click=""></i>
               </button>
@@ -29,7 +29,7 @@
             </p>
           </div>
         </a>
-        <div class="">
+        <div class="text-center">
           <h3>{{ambiente.nome | uppercase}}</h3>
         </div>
       </div>

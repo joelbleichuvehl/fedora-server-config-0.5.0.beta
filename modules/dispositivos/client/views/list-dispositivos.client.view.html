@@ -11,23 +11,34 @@
   <!--Início painel-->
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="dispositivo in vm.dispositivos | orderBy: 'nome'">
-      <div class="panel panel-primary">
-        <div class="panel-body" >
-          <div class="row">
-            <div class="col-xs-5">
-              <img alt="ambiente icone" class="img-responsive" src="modules/dispositivos/client/img/dispositivo.png"/>
-            </div>
-            <div class="col-xs-7 text-left">
-              <h5> {{dispositivo.ip}}</h5>
-              <h5> {{dispositivo.mac}}</h5>
+        <div class="row">
+          <div class="ih-item square colored effect5 left_to_right">
+            <a href="#">
+              <div class="img">
+                <img src="modules/dispositivos/client/img/dispositivo128.png" alt="img">
+              </div>
+              <div class="info">
+                <h3>{{dispositivo.nome | uppercase}}</h3>
+                <h4>Ip: {{dispositivo.ip}}</h4>
+                <h4>Mac address: {{dispositivo.mac}}</h4>
+                <button class="btn btn-primary-redondo " type="button" name="button"title="Bloquear">
+                  <i class="fa fa-unlock-alt hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
+                  data-toggle="modal" ng-click=""></i>
+                </button>
+                <button class="pull-left btn btn-primary-redondo" type="button" name="button" title="Editar" ui-sref="dispositivos.edit({ dispositivoId: dispositivo._id })" style="margin-top: 30px; margin-left: 30%;" ng-show="vm.authentication.user.isAdmin">
+                  <i class="fa fa-pencil-square-o hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
+                  data-toggle="modal" ng-click="vm.modalEditDispositivo('md', dispositivo)"></i>
+                </button>
+                <button class="pull-right btn btn-primary-redondo" type="button" name="button" title="Excluir" style="margin-top: 30px; margin-right: 30%;" ng-show="vm.authentication.user.isAdmin">
+                  <i class="fa fa-trash" data-toggle="modal" data-target=".modal{{dispositivo._id}}"></i>
+                </button>
+              </div>
+            </a>
+            <div class="text-center text-primary">
+              <h3>{{dispositivo.nome | uppercase}}</h3>
             </div>
           </div>
-        </div>
-        <div class="panel-footer bg-primary">
-          <a class="icon-link pull-left text-capitalize" ui-sref="dispositivos.edit({ dispositivoId: dispositivo._id })">{{dispositivo.nome}}</a>
-          <span ng-show="vm.authentication.user.isAdmin" class="pull-right" data-toggle="tooltip" title="Excluir"><i class="fa fa-trash text-danger" data-toggle="modal" data-target=".modal{{dispositivo._id}}"></i></span>
-          <a ng-show="vm.authentication.user.isAdmin" class="icon-link pull-right" ui-sref="dispositivos.edit({ dispositivoId: dispositivo._id })" data-toggle="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
-          <div class="clearfix"></div>
+          <br>
         </div>
         <!-- Small modal -->
         <div class="modal fade modal{{dispositivo._id}}" tabindex="-1" role="dialog">
