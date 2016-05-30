@@ -47,6 +47,7 @@ audio:not([controls]) {
 template {
   display: none;
 }
+
 a {
   background-color: transparent;
 }
@@ -2205,6 +2206,19 @@ fieldset[disabled] .btn {
   background-color: #ffffff;
   border-color: #cccccc;
 }
+.btn-default-redondo-md {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  margin-top: 50px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 6px 6px;
+  font-size: 20px;
+  line-height: 1.428571429;
+  border-radius: 25px;"
+}
 .btn-default:hover,
 .btn-default:focus,
 .btn-default.focus,
@@ -2244,6 +2258,32 @@ fieldset[disabled] .btn-default.active {
 .btn-default .badge {
   color: #ffffff;
   background-color: #333333;
+}
+.btn-primary-redondo{
+  color: #ffffff;
+  background-color: #3563a2;
+  border-color: #2f578f;
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;"
+}
+.btn-primary-redondo-md{
+  color: #ffffff;
+  background-color: #3563a2;
+  border-color: #2f578f;
+  margin-top: 30px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 20px;
+  line-height: 1.428571429;
+  border-radius: 25px;"
 }
 .btn-primary {
   color: #ffffff;

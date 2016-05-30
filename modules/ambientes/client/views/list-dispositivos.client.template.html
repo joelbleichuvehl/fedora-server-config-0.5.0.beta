@@ -1,27 +1,39 @@
 <div class="list-group">
   <h5 ng-show="vm.ambiente.dispositivos.length">Dispositivos do ambiente : <span class="label label-default">{{vm.ambiente.nome}}</span></h5>
-  <!--Início painel admin-->
-  <div ng-show="vm.authentication.user.isAdmin" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
-    <div class="panel panel-primary">
-      <div class="panel-body" >
-        <div class="row">
-          <div class="col-xs-5">
-            <img alt="ambiente icone" class="img-responsive" src="modules/dispositivos/client/img/dispositivo.png"/>
+<!--Início painel admin-->
+  <div class="col-md-4" ng-show="vm.authentication.user.isAdmin" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
+    <div class="row">
+      <div class="ih-item square colored effect5 left_to_right">
+        <a href="#">
+          <div class="img">
+            <img src="modules/dispositivos/client/img/dispositivo128.png" alt="img">
           </div>
-          <div class="col-xs-7 text-left">
-            <h5> {{dispositivo.ip}}</h5>
-            <h5> {{dispositivo.mac}}</h5>
+          <div class="info">
+            <h3>{{dispositivo.nome | uppercase}}</h3>
+            <h4>Ip: {{dispositivo.ip}}</h4>
+            <h4>Mac address: {{dispositivo.mac}}</h4>
+            <button class="btn btn-primary-redondo " type="button" name="button">
+              <i class="fa fa-unlock-alt hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
+              data-toggle="modal" ng-click=""></i>
+            </button>
+            <button class="pull-left btn btn-primary-redondo" type="button" name="button" style="margin-top: 30px; margin-left: 30%;">
+              <i class="fa fa-pencil-square-o hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
+              data-toggle="modal" ng-click="vm.modalEditDispositivo('md', dispositivo)"></i>
+            </button>
+            <button class="pull-right btn btn-primary-redondo" type="button" name="button" style="margin-top: 30px; margin-right: 30%;">
+              <i class="fa fa-trash" data-toggle="modal" data-target=".modal{{dispositivo._id}}"></i>
+            </button>
           </div>
+        </a>
+        <div class="">
+          <h3>{{dispositivo.nome | uppercase}}</h3>
         </div>
       </div>
-      <div class="panel-footer bg-primary">
-        <a class="icon-link icon-link-hand pull-left text-capitalize" ng-click="vm.modalEditDispositivo('md', dispositivo)">{{dispositivo.nome}}</a>
-        <span class="pull-right icon-link-hand" data-toggle="tooltip" title="Excluir"><i class="fa fa-trash text-danger" data-toggle="modal" data-target=".modal{{dispositivo._id}}"></i></span>
-        <a class="icon-link pull-right icon-link-hand" ng-click="vm.modalEditDispositivo('md', dispositivo)" data-toggle="tooltip" title="Editar"><i class="fa fa-edit"></i></a>
-        <div class="clearfix"></div>
-      </div>
+      <br>
     </div>
-    <!-- Small modal -->
+<!--Fim painel admin-->
+
+<!-- Small modal -->
     <div class="modal fade modal{{dispositivo._id}}" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -38,32 +50,34 @@
         </div>
       </div>
     </div>
-    <!--Fim Small modal -->
-  </div>
-  <!--Fim painel admin-->
-  <!--Início painel user-->
-  <div ng-show="!vm.authentication.user.isAdmin" class="col-xs-12 col-sm-6 col-md-4 col-lg-3" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
-    <div class="panel panel-primary">
-      <div class="panel-body" >
-        <div class="row">
-          <div class="col-xs-5">
-            <img alt="ambiente icone" class="img-responsive" src="modules/dispositivos/client/img/dispositivo.png"/>
+<!--Fim Small modal-->
+</div>
+<!--Início painel user-->
+  <div class="col-md-4" ng-show="!vm.authentication.user.isAdmin" data-ng-repeat="dispositivo in vm.ambiente.dispositivos | orderBy: 'nome'">
+    <div class="row">
+      <div class="ih-item square colored effect5 left_to_right">
+        <a href="#">
+          <div class="img">
+            <img src="modules/dispositivos/client/img/dispositivo128.png" alt="img">
           </div>
-          <div class="col-xs-7 text-left">
-            <h5> {{dispositivo.ip}}</h5>
-            <h5> {{dispositivo.mac}}</h5>
+          <div class="info">
+            <h3>{{dispositivo.nome | uppercase}}</h3>
+            <h4>Ip: {{dispositivo.ip}}</h4>
+            <h4>Mac address: {{dispositivo.mac}}</h4>
+            <button class="btn btn-primary-redondo " type="button" name="button">
+              <i class="fa fa-unlock-alt hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a"
+              data-toggle="modal" ng-click=""></i>
+            </button>
           </div>
+        </a>
+        <div class="">
+          <h3>{{dispositivo.nome | uppercase}}</h3>
         </div>
       </div>
-      <div class="panel-footer bg-primary">
-        <span class="pull-left text-capitalize">{{dispositivo.nome}}</span>
-        <div class="clearfix"></div>
-      </div>
+      <br>
     </div>
-  </div>
-</div>
+  <div>
 <!--Fim painel user-->
-
 <div class="alert alert-warning text-center" data-ng-if="vm.ambiente.$resolved &&!vm.ambiente.dispositivos.length">
   Nenhum dispositivo cadastrado neste ambiente. <a ng-show="vm.authentication.user.isAdmin" class="alert-link" ng-click="vm.modalCreateDispositivo('md', vm.ambiente)"> Incluir dispositivo.</a>
 </div>
