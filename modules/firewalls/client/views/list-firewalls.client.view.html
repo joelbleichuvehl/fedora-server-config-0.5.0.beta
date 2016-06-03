@@ -1,9 +1,12 @@
 <section>
   <div class="page-header">
     <h1>Regras de firewalls</h1>
+    <p>
+    **** não implementado  
+    </p>
     <div>
-      <a data-ui-sref="firewalls.create" data-ng-if="vm.firewalls.$resolved && vm.firewalls.length">
-        <i class="fa fa-laptop"> Criar regra de firewall</i>
+      <a class="btn btn-primary" data-ui-sref="firewalls.create" data-ng-if="vm.firewalls.$resolved && vm.firewalls.length">
+        <i class="fa fa-plus"> Criar regra de firewall</i>
       </a>
     </div>
   </div>
@@ -26,7 +29,7 @@
           <th>Outras Informações</th>
         </tr>
       </thead>
-      <tbody>  
+      <tbody>
         <tr>
           <td>1</td>
           <td>Filter</td>

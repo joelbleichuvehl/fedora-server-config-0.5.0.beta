@@ -27,40 +27,40 @@
     });
 
     // dispositivos
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Dispositivos',
-      state: 'dispositivos.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Dispositivos',
+    //   state: 'dispositivos.list'
+    // });
 
     // downloads
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Downloads',
-      state: 'downloads.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Downloads',
+    //   state: 'downloads.list'
+    // });
 
     // firewal
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Firewalls',
-      state: 'firewalls.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Firewalls',
+    //   state: 'firewalls.list'
+    // });
 
     // grupos
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Grupos',
-      state: 'grupos.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Grupos',
+    //   state: 'grupos.list'
+    // });
 
     // monitor
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Monitor',
-      state: 'monitor.view'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Monitor',
+    //   state: 'monitor.view'
+    // });
 
     // redes
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Redes',
-      state: 'redes.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Redes',
+    //   state: 'redes.list'
+    // });
 
     // sites proibidos
     menuService.addSubMenuItem('topbar', 'controle', {
@@ -69,9 +69,9 @@
     });
 
     // usuarios samba
-    menuService.addSubMenuItem('topbar', 'controle', {
-      title: 'Usuários samba',
-      state: 'usuarios.list'
-    });
+    // menuService.addSubMenuItem('topbar', 'controle', {
+    //   title: 'Usuários samba',
+    //   state: 'usuarios.list'
+    // });
   }
 }());
